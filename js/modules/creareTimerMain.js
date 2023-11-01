@@ -1,3 +1,5 @@
+import {formatNumber} from '../utils.js';
+
 export const createTimerMain = () => {
   const heroTimer = document.createElement('div');
   const timerTitle = document.createElement('p');
@@ -30,6 +32,46 @@ export const createTimerMain = () => {
   timerItemMinutes.className = 'timer__item timer__item_minutes';
   timerCountMinutes.className = 'timer__count timer__count_minutes';
   timerUnitsMinutes.className = 'timer__units timer__units_minutes';
+
+  const timer = (deadline) => {
+    const targetDate = new Date(deadline).getTime();
+
+    const timerInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const timeDifference = targetDate - now;
+
+      if (timeDifference <= 0) {
+        clearInterval(timerInterval);
+        timerTitle.textContent = 'Акция закончилась';
+        timerCountDays.textContent = '00';
+        timerCountHours.textContent = '00';
+        timerCountMinutes.textContent = '00';
+        return;
+      }
+
+      const formatTime = (time) => (time < 10 ? `0${time}` : time);
+
+      const days = formatTime(Math.floor(timeDifference / (1000 * 60 * 60 * 24)));
+      const hours = formatTime(Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+      const minutes = formatTime(Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)));
+
+      const hoursForms = ['час', 'часа', 'часов'];
+      const daysForms = ['день', 'дня', 'дней'];
+      const minutesForms = ['минута', 'минуты', 'минут'];
+
+      timerCountDays.textContent = days;
+      timerUnitsDays.textContent = formatNumber(days, daysForms);
+      timerCountHours.textContent = hours;
+      timerUnitsHours.textContent = formatNumber(hours, hoursForms);
+      timerCountMinutes.textContent = minutes;
+      timerUnitsMinutes.textContent = formatNumber(minutes, minutesForms);
+    }, 1000);
+  };
+
+
+  const deadline = '2023/11/7 12:20';
+  timer(deadline);
+
 
   return heroTimer;
 };
