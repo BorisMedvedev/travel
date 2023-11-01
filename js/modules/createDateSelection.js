@@ -4,7 +4,6 @@ export const createDateSelection = (datas) => {
   const selectDate = document.createElement('select');
   const optionDate = document.createElement('option');
   const tourButton = document.createElement('button');
-
   const labelPeople = document.createElement('label');
   const selectPeople = document.createElement('select');
   const optionPeople = document.createElement('option');
@@ -26,7 +25,6 @@ export const createDateSelection = (datas) => {
 
   selectPeople.append(optionPeople);
   labelPeople.append(selectPeople);
-
   selectDate.append(optionDate);
   labelDate.append(selectDate);
   form.append(labelDate, labelPeople, tourButton);
