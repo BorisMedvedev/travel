@@ -1,5 +1,3 @@
-import {formatNumber} from '../utils.js';
-
 export const createTimerMain = () => {
   const heroTimer = document.createElement('div');
   const timerTitle = document.createElement('p');
@@ -38,37 +36,6 @@ export const createTimerMain = () => {
   timerCountMinutes.className = 'timer__count timer__count_minutes';
   timerUnitsMinutes.className = 'timer__units timer__units_minutes';
 
-  const formatTime = (time) => (time < 10 ? `0${time}` : time);
-
-  const startTimer = () => {
-    const deadline = new Date(heroTimer.getAttribute('data-timer-deadline')).getTime();
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const timeRemaining = deadline - now;
-
-      if (timeRemaining > 0) {
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const dayForms = ['день', 'дня', 'дней'];
-        const hoursForms = ['час', 'часа', 'часов'];
-        const minutesForms = ['минута', 'минуты', 'минут'];
-        timerCountDays.textContent = formatTime(days);
-        timerUnitsDays.textContent = formatNumber(days, dayForms);
-        timerCountHours.textContent = formatTime(hours);
-        timerUnitsHours.textContent = formatNumber(hours, hoursForms);
-        timerCountMinutes.textContent = formatTime(minutes);
-        timerUnitsMinutes.textContent = formatNumber(minutes, minutesForms);
-      } else {
-        timerTitle.textContent = 'Акция завершена';
-      }
-    };
-    updateTimer();
-    setInterval(updateTimer, 1000);
-  };
-
-  startTimer();
 
   return heroTimer;
 };
