@@ -35,7 +35,7 @@ export const createDateSelection = (datas) => {
     optionDate.className = 'tour__option';
     optionPeople.className = 'tour__option';
     optionDate.textContent = element.date;
-    optionPeople.textContent = element['max-people'];
+    optionPeople.textContent = `${element['min-people']}-${element['max-people']}`;
     selectPeople.append(optionPeople);
     selectDate.append(optionDate);
   });
