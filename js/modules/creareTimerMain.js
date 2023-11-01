@@ -1,3 +1,5 @@
+import {formatNumber} from '../utils.js';
+
 export const createTimerMain = () => {
   const heroTimer = document.createElement('div');
   const timerTitle = document.createElement('p');
@@ -36,44 +38,6 @@ export const createTimerMain = () => {
   timerCountMinutes.className = 'timer__count timer__count_minutes';
   timerUnitsMinutes.className = 'timer__units timer__units_minutes';
 
-  const getDaysWord = (count) => {
-    if (count === 1) {
-      return 'день';
-    } else if (count > 1 && count < 5) {
-      return 'дня';
-    } else {
-      return 'дней';
-    }
-  };
-
-  const getHoursWord = (count) => {
-    if (count === 1) {
-      return 'час';
-    } else if (count > 1 && count < 5) {
-      return 'часа';
-    } else {
-      return 'часов';
-    }
-  };
-
-  const getMinutesWord = (count) => {
-    if (count >= 11 && count <= 14) {
-      return 'минут';
-    } else {
-      const lastDigit = count % 10;
-      switch (lastDigit) {
-        case 1:
-          return 'минута';
-        case 2:
-        case 3:
-        case 4:
-          return 'минуты';
-        default:
-          return 'минут';
-      }
-    }
-  };
-
   const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
   const startTimer = () => {
@@ -87,12 +51,15 @@ export const createTimerMain = () => {
         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const dayForms = ['день', 'дня', 'дней'];
+        const hoursForms = ['час', 'часа', 'часов'];
+        const minutesForms = ['минута', 'минуты', 'минут'];
         timerCountDays.textContent = formatTime(days);
-        timerUnitsDays.textContent = getDaysWord(days);
+        timerUnitsDays.textContent = formatNumber(days, dayForms);
         timerCountHours.textContent = formatTime(hours);
-        timerUnitsHours.textContent = getHoursWord(hours);
+        timerUnitsHours.textContent = formatNumber(hours, hoursForms);
         timerCountMinutes.textContent = formatTime(minutes);
-        timerUnitsMinutes.textContent = getMinutesWord(minutes);
+        timerUnitsMinutes.textContent = formatNumber(minutes, minutesForms);
       } else {
         timerTitle.textContent = 'Акция завершена';
       }
