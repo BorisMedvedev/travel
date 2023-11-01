@@ -57,7 +57,7 @@ export const createTimerMain = () => {
 
       const hoursForms = ['час', 'часа', 'часов'];
       const daysForms = ['день', 'дня', 'дней'];
-      const minutesForms = ['минута', 'минуты', 'минут'];
+      const minutesForms = ['минут', 'минута', 'минуты'];
 
       timerCountDays.textContent = days;
       timerUnitsDays.textContent = formatNumber(days, daysForms);
@@ -69,7 +69,7 @@ export const createTimerMain = () => {
   };
 
 
-  const deadline = '2023/11/7 12:20';
+  const deadline = '2023/11/7 12:10';
   timer(deadline);
 
 
