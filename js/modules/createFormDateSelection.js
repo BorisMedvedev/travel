@@ -1,4 +1,4 @@
-export const createDateSelection = (datas) => {
+export const createFormDateSelection = (datas) => {
   const form = document.createElement('form');
   const labelDate = document.createElement('label');
   const selectDate = document.createElement('select');

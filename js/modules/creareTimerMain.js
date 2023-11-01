@@ -16,21 +16,17 @@ export const createTimerMain = () => {
   timerItemDays.append(timerCountDays, timerUnitsDays);
   heroTimer.append(timerTitle, timerItemDays, timerItemHours, timerItemMinutes);
 
-  heroTimer.setAttribute('data-timer-deadline', '11/21/2023');
+  heroTimer.setAttribute('data-timer-deadline', '');
 
   timerTitle.textContent = 'До конца акции осталось:';
-
   heroTimer.className = 'hero__timer timer';
   timerTitle.className = 'timer__title';
-
   timerItemDays.className = 'timer__item timer__item_days';
   timerCountDays.className = 'timer__count timer__count_days';
   timerUnitsDays.className = 'timer__units timer__units_days';
-
   timerItemHours.className = 'timer__item timer__item_hours';
   timerCountHours.className = 'timer__count timer__count_hours';
   timerUnitsHours.className = 'timer__units timer__units_hours';
-
   timerItemMinutes.className = 'timer__item timer__item_minutes';
   timerCountMinutes.className = 'timer__count timer__count_minutes';
   timerUnitsMinutes.className = 'timer__units timer__units_minutes';
