@@ -1,7 +1,6 @@
 import {formatNumber} from '../utils.js';
 
 export const createTimerMain = () => {
-  const heroTimer = document.createElement('div');
   const timerTitle = document.createElement('p');
   const timerItemDays = document.createElement('div');
   const timerCountDays = document.createElement('span');
@@ -13,15 +12,15 @@ export const createTimerMain = () => {
   const timerCountMinutes = document.createElement('span');
   const timerUnitsMinutes = document.createElement('span');
 
+  const element = document.querySelector('[data-timer-deadline]');
+  const deadline = element.getAttribute('data-timer-deadline');
+
   timerItemMinutes.append(timerCountMinutes, timerUnitsMinutes);
   timerItemHours.append(timerCountHours, timerUnitsHours);
   timerItemDays.append(timerCountDays, timerUnitsDays);
-  heroTimer.append(timerTitle, timerItemDays, timerItemHours, timerItemMinutes);
-
-  heroTimer.setAttribute('data-timer-deadline', '');
+  element.append(timerTitle, timerItemDays, timerItemHours, timerItemMinutes);
 
   timerTitle.textContent = 'До конца акции осталось:';
-  heroTimer.className = 'hero__timer timer';
   timerTitle.className = 'timer__title';
   timerItemDays.className = 'timer__item timer__item_days';
   timerCountDays.className = 'timer__count timer__count_days';
@@ -69,9 +68,12 @@ export const createTimerMain = () => {
   };
 
 
-  const deadline = '2023/11/7 12:10';
   timer(deadline);
 
-
-  return heroTimer;
+  return {
+    timerTitle,
+    timerItemDays,
+    timerItemHours,
+    timerItemMinutes,
+  };
 };

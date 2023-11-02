@@ -4,7 +4,7 @@ const init = async () => {
   const timerModule = await import('./modules/creareTimerMain.js');
   const data = await dataModule.getDate();
   const timer = timerModule.createTimerMain();
-  const heroTextElement = document.querySelector('.hero__text');
+  const heroTextElement = document.querySelector('[data-timer-deadline]');
   const tourContent = document.querySelector('.tour__content');
   const getDateForm = getDateFormModule.createFormDateSelection(data);
   const reservationContainer = document.querySelector('.reservation__container');
@@ -14,7 +14,7 @@ const init = async () => {
   reservationContainer.append(getFormReservation);
   tourContent.append(getDateForm);
 
-  heroTextElement.insertAdjacentElement('afterend', timer);
+  heroTextElement.append(timer.timerTitle, timer.timerItemDays, timer.timerItemHours, timer.timerItemMinutes);
 };
 
 init();
