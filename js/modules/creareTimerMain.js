@@ -11,7 +11,6 @@ export const createTimerMain = () => {
   const timerItemMinutes = document.createElement('div');
   const timerCountMinutes = document.createElement('span');
   const timerUnitsMinutes = document.createElement('span');
-
   const element = document.querySelector('[data-timer-deadline]');
   const deadline = element.getAttribute('data-timer-deadline');
 
@@ -35,7 +34,9 @@ export const createTimerMain = () => {
   const timer = (deadline) => {
     const targetDate = new Date(deadline).getTime();
 
-    const timerInterval = setInterval(() => {
+    const formatTime = (time) => (time < 10 ? `0${time}` : time);
+
+    const updateTimer = () => {
       const now = new Date().getTime();
       const timeDifference = targetDate - now;
 
@@ -47,8 +48,6 @@ export const createTimerMain = () => {
         timerCountMinutes.textContent = '00';
         return;
       }
-
-      const formatTime = (time) => (time < 10 ? `0${time}` : time);
 
       const days = formatTime(Math.floor(timeDifference / (1000 * 60 * 60 * 24)));
       const hours = formatTime(Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
@@ -64,9 +63,11 @@ export const createTimerMain = () => {
       timerUnitsHours.textContent = formatNumber(hours, hoursForms);
       timerCountMinutes.textContent = minutes;
       timerUnitsMinutes.textContent = formatNumber(minutes, minutesForms);
-    });
-  };
+    };
 
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+  };
 
   timer(deadline);
 
