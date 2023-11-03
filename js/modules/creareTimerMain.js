@@ -64,7 +64,7 @@ export const createTimerMain = () => {
       timerUnitsHours.textContent = formatNumber(hours, hoursForms);
       timerCountMinutes.textContent = minutes;
       timerUnitsMinutes.textContent = formatNumber(minutes, minutesForms);
-    }, 1000);
+    });
   };
 
 
