@@ -55,7 +55,7 @@ export const createTimerMain = () => {
 
       const hoursForms = ['час', 'часа', 'часов'];
       const daysForms = ['день', 'дня', 'дней'];
-      const minutesForms = ['минут', 'минута', 'минуты'];
+      const minutesForms = ['минута', 'минуты', 'минут'];
 
       timerCountDays.textContent = days;
       timerUnitsDays.textContent = formatNumber(days, daysForms);

@@ -3,7 +3,7 @@
   display: grid;
   -ms-grid-columns: (1fr) [ 3];
   grid-template-columns: repeat(3, 1fr);
-  grid-template-areas: "title title title" "days hours minutes";
+  grid-template-areas: "title title title""days hours minutes";
 }
 
 .timer__title {
